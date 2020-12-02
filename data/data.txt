@@ -1,0 +1,5 @@
+Moscow 12 10 14 20
+Minsk 23 15 16 20
+Poltava 7 46 17 20
+Kapushkino 2 55 7 25
+Lipetevo 3 56 9 14
