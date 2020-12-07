@@ -57,7 +57,7 @@ public class Carriage {
                 seatsNumber = 36;
                 break;
             default:
-                throw new IllegalArgumentException("unknown Carriage type");
+                throw new EnumConstantNotPresentException(CarriageType.class, type.name());
 
         }
     }

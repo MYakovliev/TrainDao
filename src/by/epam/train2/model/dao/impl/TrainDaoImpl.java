@@ -12,24 +12,34 @@ import java.util.Optional;
 
 public class TrainDaoImpl implements TrainDao {
     private static final Logger logger = LogManager.getLogger();
-    private static final TrainWarehouse INSTANCE = TrainWarehouse.getInstance();
+    private static TrainWarehouse instance = TrainWarehouse.getInstance();
 
     @Override
     public void add(PassengerTrain train) throws DaoException {
-        INSTANCE.add(train);
+        instance.add(train);
     }
 
     @Override
     public void set(int index, PassengerTrain train) throws DaoException {
-        if (index < 0 || index > INSTANCE.size()) {
+        if (index < 0 || index > instance.size()) {
             throw new DaoException("invalid index to set element:" + index);
         }
-        INSTANCE.set(index, train);
+        instance.set(index, train);
     }
 
     @Override
     public void remove(PassengerTrain train) throws DaoException {
-        INSTANCE.remove(train);
+        instance.remove(train);
+    }
+
+    @Override
+    public void replace(PassengerTrain train1, PassengerTrain train2) throws DaoException {
+        instance.replace(train1, train2);
+    }
+
+    @Override
+    public void clear() {
+        instance.clear();
     }
 
     @Override
@@ -40,7 +50,7 @@ public class TrainDaoImpl implements TrainDao {
         }
         PassengerTrain newTrain = oldTrain.get().clone();
         newTrain.setDestination(destination);
-        INSTANCE.replace(oldTrain.get(), newTrain);
+        instance.replace(oldTrain.get(), newTrain);
     }
 
     @Override
@@ -51,7 +61,7 @@ public class TrainDaoImpl implements TrainDao {
         }
         PassengerTrain newTrain = oldTrain.get().clone();
         newTrain.setDepartureTime(time[0], time[1]);
-        INSTANCE.replace(oldTrain.get(), newTrain);
+        instance.replace(oldTrain.get(), newTrain);
     }
 
     @Override
@@ -68,11 +78,11 @@ public class TrainDaoImpl implements TrainDao {
 
     @Override
     public List<PassengerTrain> findAll() {
-        return INSTANCE.getTrains();
+        return instance.getTrains();
     }
 
     @Override
     public int size() {
-        return INSTANCE.size();
+        return instance.size();
     }
 }

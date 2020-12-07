@@ -19,8 +19,9 @@ public class TrainSortServiceImpl implements TrainSortService {
         List<PassengerTrain> trains = trainDao.findAll();
         trains.sort(Comparator.comparing(PassengerTrain::getDestination));
         try {
+            trainDao.clear();
             for (int i = 0; i < trains.size(); i++) {
-                trainDao.set(i, trains.get(i));
+                trainDao.add(trains.get(i));
             }
         } catch (DaoException e) {
             logger.error(e);
@@ -32,8 +33,9 @@ public class TrainSortServiceImpl implements TrainSortService {
         List<PassengerTrain> trains = trainDao.findAll();
         trains.sort(Comparator.comparing(PassengerTrain::getId));
         try {
+            trainDao.clear();
             for (int i = 0; i < trains.size(); i++) {
-                trainDao.set(i, trains.get(i));
+                trainDao.add(trains.get(i));
             }
         } catch (DaoException e) {
             logger.error(e);
@@ -45,8 +47,9 @@ public class TrainSortServiceImpl implements TrainSortService {
         List<PassengerTrain> trains = trainDao.findAll();
         trains.sort(Comparator.comparing(PassengerTrain::getDepartureHour).thenComparing(PassengerTrain::getDepartureMinute));
         try {
+            trainDao.clear();
             for (int i = 0; i < trains.size(); i++) {
-                trainDao.set(i, trains.get(i));
+                trainDao.add(trains.get(i));
             }
         } catch (DaoException e) {
             logger.error(e);
@@ -80,10 +83,10 @@ public class TrainSortServiceImpl implements TrainSortService {
     @Override
     public void reverse() {
         try {
-            for (int i = 0; i < trainDao.size() / 2; i++) {
-                PassengerTrain train = trainDao.findAll().get(i);
-                trainDao.set(i, trainDao.findAll().get(trainDao.size() - i - 1));
-                trainDao.set(trainDao.size() - i - 1, train);
+            List<PassengerTrain> trains = trainDao.findAll();
+            trainDao.clear();
+            for (int i = trains.size() - 1; i >= 0; i--) {
+                trainDao.add(trains.get(i));
             }
         } catch (DaoException e) {
             logger.error(e);

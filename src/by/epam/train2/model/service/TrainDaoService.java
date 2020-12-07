@@ -1,4 +1,4 @@
-package by.epam.train2.model.dao;
+package by.epam.train2.model.service;
 
 import by.epam.train2.exception.DaoException;
 import by.epam.train2.model.entity.PassengerTrain;
@@ -6,7 +6,7 @@ import by.epam.train2.model.entity.PassengerTrain;
 import java.util.List;
 import java.util.Optional;
 
-public interface TrainDao {
+public interface TrainDaoService {
     void add(PassengerTrain train) throws DaoException;
 
     void set(int index, PassengerTrain train) throws DaoException;
@@ -14,8 +14,6 @@ public interface TrainDao {
     void remove(PassengerTrain train) throws DaoException;
 
     void replace(PassengerTrain train1, PassengerTrain train2) throws DaoException;
-
-    void clear();
 
     void updateTrainDestinationById(int id, String destination) throws DaoException;
 
@@ -26,5 +24,4 @@ public interface TrainDao {
     List<PassengerTrain> findAll();
 
     int size();
-
 }

@@ -47,6 +47,10 @@ public class TrainWarehouse {
         trains.remove(train);
     }
 
+    public void clear(){
+        trains.clear();
+    }
+
     public void replace(PassengerTrain train1, PassengerTrain train2) throws DaoException {
         if (!trains.contains(train1)) {
             throw new DaoException(train1 + " not in the list");
