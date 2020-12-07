@@ -1,6 +1,6 @@
 package by.epam.train2.model.entity;
 
-import by.epam.train2.model.service.IdGenerator;
+import by.epam.train2.util.IdGenerator;
 
 import java.util.Objects;
 
@@ -50,8 +50,7 @@ public class Seat {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Seat seat = (Seat) o;
-        return getId() == seat.getId() &&
-                getNum() == seat.getNum() &&
+        return getNum() == seat.getNum() &&
                 isReserved() == seat.isReserved();
     }
 

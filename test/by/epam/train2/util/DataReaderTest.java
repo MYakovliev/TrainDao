@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.testng.Assert.*;
 
-public class ReaderTest {
+public class DataReaderTest {
 
     @Test
     public void testMakeTrainList() {
@@ -24,7 +24,7 @@ public class ReaderTest {
         expected.add(train3);
         expected.add(train4);
         expected.add(train5);
-        List<PassengerTrain> actual = new Reader().makeTrainList(new File(".\\data\\data.txt"));
+        List<PassengerTrain> actual = new DataReader().makeTrainList(".\\data\\data.txt");
         assertEquals(actual.get(0), expected.get(0));
     }
 }

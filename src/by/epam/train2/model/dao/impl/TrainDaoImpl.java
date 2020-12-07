@@ -24,7 +24,7 @@ public class TrainDaoImpl implements TrainDao {
         if (index < 0 || index > INSTANCE.size()) {
             throw new DaoException("invalid index to set element:" + index);
         }
-
+        INSTANCE.set(index, train);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class TrainDaoImpl implements TrainDao {
 
     @Override
     public Optional<PassengerTrain> findById(int id) {
-        List<PassengerTrain> trains = finalAll();
+        List<PassengerTrain> trains = findAll();
         Optional<PassengerTrain> result = Optional.empty();
         for (PassengerTrain train : trains) {
             if (train.getId() == id) {
@@ -67,12 +67,12 @@ public class TrainDaoImpl implements TrainDao {
     }
 
     @Override
-    public List<PassengerTrain> finalAll() {
+    public List<PassengerTrain> findAll() {
         return INSTANCE.getTrains();
     }
 
     @Override
-    public int size(){
+    public int size() {
         return INSTANCE.size();
     }
 }

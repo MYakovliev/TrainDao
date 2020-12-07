@@ -10,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Reader {
+public class DataReader {
 
     private static Logger logger = LogManager.getLogger();
 
-    public List<PassengerTrain> makeTrainList(File file) {
+    public List<PassengerTrain> makeTrainList(String filename) {
         List<PassengerTrain> result = new ArrayList<>();
-        try (Scanner scanner = new Scanner(file)) {
+        try (Scanner scanner = new Scanner(new File(filename))) {
             while (scanner.hasNextLine()) {
                 String trainFields = scanner.nextLine();
                 String[] trainFieldsArray  = trainFields.split(" ");

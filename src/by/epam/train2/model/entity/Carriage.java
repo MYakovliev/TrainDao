@@ -1,6 +1,6 @@
 package by.epam.train2.model.entity;
 
-import by.epam.train2.model.service.IdGenerator;
+import by.epam.train2.util.IdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,9 +11,9 @@ public class Carriage {
     private int num;
     private int seatsNumber;
     private List<Seat> seats;
-    private CarriageTypes type;
+    private CarriageType type;
 
-    public Carriage(int num, CarriageTypes type) {
+    public Carriage(int num, CarriageType type) {
         id = IdGenerator.generateCarriageId();
         setNum(num);
         setType(type);
@@ -43,11 +43,11 @@ public class Carriage {
         }
     }
 
-    public CarriageTypes getType() {
+    public CarriageType getType() {
         return type;
     }
 
-    public void setType(CarriageTypes type) {
+    public void setType(CarriageType type) {
         this.type = type;
         switch (type) {
             case ECONOM:
@@ -67,8 +67,7 @@ public class Carriage {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Carriage carriage = (Carriage) o;
-        return getId() == carriage.getId() &&
-                getNum() == carriage.getNum() &&
+        return getNum() == carriage.getNum() &&
                 seatsNumber == carriage.seatsNumber &&
                 getSeats().equals(carriage.getSeats()) &&
                 getType() == carriage.getType();

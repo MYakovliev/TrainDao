@@ -1,4 +1,4 @@
-package by.epam.train2.model.service;
+package by.epam.train2.util;
 
 public class IdGenerator {
     private static int trainId = 100000;

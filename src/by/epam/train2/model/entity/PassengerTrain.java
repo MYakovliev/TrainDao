@@ -1,11 +1,10 @@
 package by.epam.train2.model.entity;
 
-import by.epam.train2.model.service.IdGenerator;
+import by.epam.train2.util.IdGenerator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class PassengerTrain{
     private int id;
@@ -62,9 +61,9 @@ public class PassengerTrain{
         carriages = new ArrayList<>();
         for (int i = 0; i < carriageCount; i++) {
             if (i < carriageCount / 3) {
-                carriages.add(new Carriage(i + 1, CarriageTypes.BUSINESS));
+                carriages.add(new Carriage(i + 1, CarriageType.BUSINESS));
             } else {
-                carriages.add( new Carriage(i + 1, CarriageTypes.ECONOM));
+                carriages.add( new Carriage(i + 1, CarriageType.ECONOM));
             }
         }
 
@@ -103,17 +102,24 @@ public class PassengerTrain{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         PassengerTrain train = (PassengerTrain) o;
-        return getStaffAmount() == train.getStaffAmount() &&
-                getDestination().equals(train.getDestination()) &&
-                Arrays.equals(getDepartureTime(), train.getDepartureTime()) &&
-                getCarriages().equals(train.getCarriages());
+
+        if (getId() != train.getId()) return false;
+        if (getStaffAmount() != train.getStaffAmount()) return false;
+        if (getDestination() != null ? !getDestination().equals(train.getDestination()) : train.getDestination() != null)
+            return false;
+        if (!Arrays.equals(getDepartureTime(), train.getDepartureTime())) return false;
+        return getCarriages() != null ? getCarriages().equals(train.getCarriages()) : train.getCarriages() == null;
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(getId(), getDestination(), getStaffAmount(), getCarriages());
+        int result = getId();
+        result = 31 * result + (getDestination() != null ? getDestination().hashCode() : 0);
         result = 31 * result + Arrays.hashCode(getDepartureTime());
+        result = 31 * result + getStaffAmount();
+        result = 31 * result + (getCarriages() != null ? getCarriages().hashCode() : 0);
         return result;
     }
 

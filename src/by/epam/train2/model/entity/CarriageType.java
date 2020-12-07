@@ -1,6 +1,6 @@
 package by.epam.train2.model.entity;
 
-public enum  CarriageTypes {
+public enum CarriageType {
     ECONOM,
     BUSINESS
 }

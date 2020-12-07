@@ -16,7 +16,7 @@ public class TrainSortServiceImpl implements TrainSortService {
 
     @Override
     public void sortTrainsByDestination() {
-        List<PassengerTrain> trains = trainDao.finalAll();
+        List<PassengerTrain> trains = trainDao.findAll();
         trains.sort(Comparator.comparing(PassengerTrain::getDestination));
         try {
             for (int i = 0; i < trains.size(); i++) {
@@ -29,7 +29,7 @@ public class TrainSortServiceImpl implements TrainSortService {
 
     @Override
     public void sortTrainsById() {
-        List<PassengerTrain> trains = trainDao.finalAll();
+        List<PassengerTrain> trains = trainDao.findAll();
         trains.sort(Comparator.comparing(PassengerTrain::getId));
         try {
             for (int i = 0; i < trains.size(); i++) {
@@ -42,7 +42,7 @@ public class TrainSortServiceImpl implements TrainSortService {
 
     @Override
     public void sortTrainsByDepartureTime() {
-        List<PassengerTrain> trains = trainDao.finalAll();
+        List<PassengerTrain> trains = trainDao.findAll();
         trains.sort(Comparator.comparing(PassengerTrain::getDepartureHour).thenComparing(PassengerTrain::getDepartureMinute));
         try {
             for (int i = 0; i < trains.size(); i++) {
@@ -81,8 +81,8 @@ public class TrainSortServiceImpl implements TrainSortService {
     public void reverse() {
         try {
             for (int i = 0; i < trainDao.size() / 2; i++) {
-                PassengerTrain train = trainDao.finalAll().get(i);
-                trainDao.set(i, trainDao.finalAll().get(trainDao.size() - i - 1));
+                PassengerTrain train = trainDao.findAll().get(i);
+                trainDao.set(i, trainDao.findAll().get(trainDao.size() - i - 1));
                 trainDao.set(trainDao.size() - i - 1, train);
             }
         } catch (DaoException e) {

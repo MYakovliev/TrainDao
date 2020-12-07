@@ -19,7 +19,7 @@ public interface TrainDao {
 
     Optional<PassengerTrain> findById(int id);
 
-    List<PassengerTrain> finalAll();
+    List<PassengerTrain> findAll();
 
     int size();
 
